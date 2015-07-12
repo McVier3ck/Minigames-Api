@@ -95,10 +95,13 @@ public class Team {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static String getTeam(Player player) {
 		for (String teamname : teams.keySet()) {
 			List<UUID> uuid = teams.get(teamname);
-			
+			if(uuid.contains(player.getUniqueId())) {
+				return teamname;
+			}
 		}
 		
 		
