@@ -1,6 +1,6 @@
-package me.McVier3ck.Log;
+package me.McVier3ck.log;
 
-public enum LogColorBackground {
+public enum LogColorsBackground {
 	Black_background,
 	Red_background,
 	Green_background,

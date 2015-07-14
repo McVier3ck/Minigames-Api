@@ -1,8 +1,8 @@
-package me.McVier3ck.Log;
+package me.McVier3ck.log;
 
 public class GetColor {
 	
-	public static int getColor(LogColor color) {
+	public static int getColor(LogColors color) {
 		int colorInt = 0;
 		switch (color) {
 		case Black: colorInt = 30;
@@ -30,7 +30,7 @@ public class GetColor {
 		return colorInt;
 	}
 	
-	public static int getBackColor(LogColorBackground color) {
+	public static int getBackColor(LogColorsBackground color) {
 		int colorInt = 0;
 		switch (color) {
 		case Black_background: colorInt = 40;

@@ -13,15 +13,25 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Config {
 	
-	public static void createConfig(String Filename)
+	
+	
+	File FileDir; 
+	File pFile;
+
+	public Config(String filename, String pluginname) {
+		FileDir = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(), "");
+		pFile = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(),filename + ".yml");
+	}
+	
+	
+	
+	public void create()
 	{
-		File FileDir = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(), "");
 		
 		if(!FileDir.exists())
 		{
-			Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder().mkdir();
+			FileDir.mkdir();
 		}
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		if(!pFile.exists())
 		{
 			
@@ -40,9 +50,8 @@ public class Config {
 	
 	
 	
-	public static void deleteConfig(String Filename)
+	public void delete(String Filename)
 	{
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		pFile.delete();
 	}
 	
@@ -50,9 +59,8 @@ public class Config {
 	
 	
 	
-	public static boolean existFile(String Filename)
+	public boolean existFile()
 	{
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		if(pFile.exists())
 		{
 			return true;
@@ -61,12 +69,11 @@ public class Config {
 	}
 
 
-	public static void addLocation(String Filename, String LocationName, Location location) {
-		if(!existFile(Filename)) {
-			createConfig(Filename);
+	public void addLocation(String LocationName, Location location) {
+		if(!existFile()) {
+			create();
 		}
 		
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		config.set(LocationName + ".x", location.getX());
 		config.set(LocationName + ".y", location.getY());
@@ -84,12 +91,11 @@ public class Config {
 		
 	}
 	
-	public static Location getLocation(String Filename, String LocationName, boolean yawandpitch) {
-		if(!existFile(Filename)) {
+	public Location getLocation(String LocationName, boolean yawandpitch) {
+		if(!existFile()) {
 			System.out.println("File not Found");
 			return null;
 		}
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		double x = config.getDouble(LocationName + ".x");
 		double y = config.getDouble(LocationName + ".y");
@@ -105,11 +111,10 @@ public class Config {
 		
 	}
 	
-	public static void removeLocation(String Filename, String LocationName) {
-		if(!existFile(Filename)) {
-			createConfig(Filename);
+	public void removeLocation(String Filename, String LocationName) {
+		if(!existFile()) {
+			create();
 		}
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
 		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		config.set(LocationName + ".x", null);
 		config.set(LocationName + ".y", null);
@@ -127,12 +132,7 @@ public class Config {
 		
 	}
 
-	public static FileConfiguration getConfig(String Filename) {
-		File pFile = new File(Bukkit.getPluginManager().getPlugin("Minigames-Api").getDataFolder(),Filename + ".yml");
-		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
-		return config;
-	}
-	
+		
 
 
 
