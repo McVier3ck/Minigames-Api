@@ -4,10 +4,7 @@ import java.util.ArrayList;
 
 import me.McVier3ck.team.Team;
 import me.McVier3ck.team.TeamListener;
-import net.md_5.bungee.api.ChatColor;
 
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -34,12 +31,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 		pm.registerEvents(new TeamListener(), this);
 		
-		Team test = new Team("Test");
-		for(Player player : Bukkit.getOnlinePlayers()) {
-			test.joinTeam(player);
-		}
-		test.setColor(ChatColor.DARK_PURPLE);
-
+		
+		
+	
 	}	
 	
 	
