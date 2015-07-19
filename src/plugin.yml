@@ -3,6 +3,4 @@ version: 1.0
 main: me.McVier3ck.main.MinigamesApi
 
 
-commands:
-   config:
-      description: Config Command
+
