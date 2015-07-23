@@ -2,11 +2,11 @@ package me.McVier3ck.main;
 
 import java.util.ArrayList;
 
-import me.McVier3ck.team.Team;
-import me.McVier3ck.team.TeamListener;
-
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import me.McVier3ck.team.Team;
+import me.McVier3ck.team.TeamListener;
 
 	public class MinigamesApi extends JavaPlugin{
 
@@ -27,13 +27,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 	@Override
 	public void onEnable() {
 		PluginManager pm = this.getServer().getPluginManager();
-		
-
 		pm.registerEvents(new TeamListener(), this);
-		
-		
-		
 	
+		
+		
+		
 	}	
 	
 	

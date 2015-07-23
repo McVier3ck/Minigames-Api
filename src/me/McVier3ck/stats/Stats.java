@@ -25,7 +25,12 @@ public class Stats {
 	}
 	
 	public void setStat(Player player, String stat, String statvalue) {
-		mysql.queryUpdate("UPDATE " + tablename + " SET " + stat + "='" + statvalue + "' WHERE player='" + player.getUniqueId().toString() + "'");
+		if(getStat(player, stat) != null) {
+			mysql.queryUpdate("UPDATE " + tablename + " SET " + stat + "='" + statvalue + "', playername='" + player.getName() + "' WHERE player='" + player.getUniqueId().toString() + "'");
+		} else {
+			mysql.queryUpdate("INSERT INTO " + tablename + " (player, playername, " + stat + ") VALUES ('" + player.getUniqueId().toString() + "', '" + player.getName() + "', '" + statvalue + "')");
+		}
+		
 		
 	}
 	

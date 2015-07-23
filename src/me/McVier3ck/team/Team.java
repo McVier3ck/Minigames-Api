@@ -16,6 +16,7 @@ public class Team {
 	private ArrayList<UUID> players = new ArrayList<UUID>();
 	private ChatColor color = ChatColor.WHITE;
 	private Boolean friendlyfire = false;
+	private Boolean allowInteract = true; 
 	@SuppressWarnings("unused")
 	private String teamname = "";
 	
@@ -63,7 +64,16 @@ public class Team {
 		}
 	}
 	
-	public ChatColor getfriendlyFire() {
+	public ArrayList<Player> getPlayers() {
+		ArrayList<Player> playerlist = new ArrayList<Player>();
+		for(UUID uuid : players) {
+			Player player = Bukkit.getPlayer(uuid);
+			playerlist.add(player);
+		}
+		return playerlist;
+	}
+	
+	public ChatColor getColor() {
 		return color;
 	}
 	
@@ -74,6 +84,15 @@ public class Team {
 	public boolean getFriendlyFire() {
 		return friendlyfire;
 	}
+	
+	public void setAllowInteract(boolean allowInteract) {
+		this.allowInteract = allowInteract;
+	}
+	
+	public boolean getAllowInteract() {
+		return allowInteract;
+	}
+	
 	
 
 }
