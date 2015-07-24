@@ -29,10 +29,8 @@ import me.McVier3ck.team.TeamListener;
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new TeamListener(), this);
 	
-		
-		
-		
 	}	
+	
 	
 	
 }

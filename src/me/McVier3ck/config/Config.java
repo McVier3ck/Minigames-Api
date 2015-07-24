@@ -3,12 +3,12 @@ package me.McVier3ck.config;
 import java.io.File;
 import java.io.IOException;
 
-import me.McVier3ck.main.MinigamesApi;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+
+import me.McVier3ck.log.Log;
 
 
 public class Config {
@@ -17,11 +17,20 @@ public class Config {
 	
 	File FileDir; 
 	File pFile;
-
+	FileConfiguration config;
+	
 	public Config(String filename, String pluginname) {
-		FileDir = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(), "");
-		pFile = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(),filename + ".yml");
+		this.FileDir = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(), "");
+		this.pFile = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder(),filename + ".yml");
+		this.config = YamlConfiguration.loadConfiguration(pFile);
 	}
+	
+	public Config(String filename, String pluginname, String Folder) {
+		this.FileDir = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder() + "\\" + Folder, "");
+		this.pFile = new File(Bukkit.getPluginManager().getPlugin(pluginname).getDataFolder() + "\\" + Folder,filename + ".yml");
+		this.config = YamlConfiguration.loadConfiguration(pFile);
+	}
+	
 	
 	
 	
@@ -42,7 +51,7 @@ public class Config {
 					} catch (Exception e) 
 					{
 						
-						MinigamesApi.getInstance().getLogger().severe("Kann nicht erstellt werden");
+						Log.Error(e.getMessage());
 					}
 				
 		}
@@ -50,7 +59,7 @@ public class Config {
 	
 	
 	
-	public void delete(String Filename)
+	public void delete()
 	{
 		pFile.delete();
 	}
@@ -74,7 +83,6 @@ public class Config {
 			create();
 		}
 		
-		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		config.set(LocationName + ".x", location.getX());
 		config.set(LocationName + ".y", location.getY());
 		config.set(LocationName + ".z", location.getZ());
@@ -85,7 +93,7 @@ public class Config {
 			config.save(pFile);
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			Log.Error(e.getMessage());
 		}
 		
 		
@@ -96,7 +104,6 @@ public class Config {
 			System.out.println("File not Found");
 			return null;
 		}
-		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		double x = config.getDouble(LocationName + ".x");
 		double y = config.getDouble(LocationName + ".y");
 		double z = config.getDouble(LocationName + ".z");
@@ -115,7 +122,6 @@ public class Config {
 		if(!existFile()) {
 			create();
 		}
-		FileConfiguration config = YamlConfiguration.loadConfiguration(pFile);
 		config.set(LocationName + ".x", null);
 		config.set(LocationName + ".y", null);
 		config.set(LocationName + ".z", null);
@@ -127,12 +133,52 @@ public class Config {
 			config.save(pFile);
 		} catch (IOException e) {
 			
-			e.printStackTrace();
+			Log.Error(e.getMessage());
 		}
 		
 	}
-
+	
+	public FileConfiguration getConfig() {
+		return config;
+	}
+	
+	public void save() {
+		config.options().copyDefaults(true);
+		try {
+			config.save(pFile);
+		} catch (IOException e) {
 		
+			Log.Error(e.getMessage());
+		};
+	}
+	
+	public File getFileDir() {
+		return FileDir;
+	}
+
+
+
+	public void setFileDir(File fileDir) {
+		FileDir = fileDir;
+	}
+
+
+
+	public File getpFile() {
+		return pFile;
+	}
+
+
+
+	public void setpFile(File pFile) {
+		this.pFile = pFile;
+	}
+
+
+
+	public void setConfig(FileConfiguration config) {
+		this.config = config;
+	}
 
 
 
