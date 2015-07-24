@@ -7,6 +7,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
 import me.McVier3ck.config.Config;
+import me.McVier3ck.main.MinigamesApi;
 
 public class Arena {
 
@@ -15,6 +16,9 @@ public class Arena {
 	private int X2, Y2, Z2;
 	private String name;
 	private World world;
+	private Boolean canBreak = true;
+	private Boolean canPlace = true;
+	private Boolean canInteract = true;
 	
 	public Arena(int X1, int Y1, int Z1, int X2, int Y2, int Z2, World world, String name) {
 		this.X1 = Math.max(X1, X2);
@@ -28,6 +32,8 @@ public class Arena {
 		this.name = name;
 		
 		this.world = world;
+		
+		MinigamesApi.Arenas.add(this);
 	}
 	
 	public boolean isPlayerIn(Player player) {
@@ -129,7 +135,29 @@ public class Arena {
 		
 	}
 	
+	public void setCanBreak(boolean canBreak) {
+		this.canBreak = canBreak;
+	}
 	
+	public Boolean getCanBreak() {
+		return canBreak;
+	}
+	
+	public void setCanPlace(boolean canPlace) {
+		this.canPlace = canPlace;
+	}
+	
+	public Boolean getCanPlace() {
+		return canPlace;
+	}
+	
+	public void setCanInteract(boolean canInteract) {
+		this.canInteract = canInteract;
+	}
+	
+	public Boolean getCanInteract() {
+		return canInteract;
+	}
 	
 	
 	public int getX1() {

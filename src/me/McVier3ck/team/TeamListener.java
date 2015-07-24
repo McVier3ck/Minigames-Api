@@ -3,6 +3,8 @@ package me.McVier3ck.team;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -32,7 +34,7 @@ public class TeamListener implements Listener{
 		Player player = e.getPlayer();
 		for (Team team : MinigamesApi.Teams) {
 			if(team.containsPlayer(player)) {
-				if(!team.getAllowInteract()) {
+				if(!team.getCanInteract()) {
 					e.setCancelled(true);
 				}
 			}
@@ -44,7 +46,7 @@ public class TeamListener implements Listener{
 		Player player = e.getPlayer();
 		for (Team team : MinigamesApi.Teams) {
 			if(team.containsPlayer(player)) {
-				if(!team.getAllowInteract()) {
+				if(!team.getCanInteract()) {
 					e.setCancelled(true);
 				}
 			}
@@ -57,9 +59,33 @@ public class TeamListener implements Listener{
 			Player player = (Player) e.getDamager();
 			for (Team team : MinigamesApi.Teams) {
 				if(team.containsPlayer(player)) {
-					if(!team.getAllowInteract()) {
+					if(!team.getCanInteract()) {
 						e.setCancelled(true);
 					}
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	private void canBreak(BlockBreakEvent e) {
+		Player player = e.getPlayer();
+		for (Team team : MinigamesApi.Teams) {
+			if(team.containsPlayer(player)) {
+				if(!team.getCanBreak()) {
+					e.setCancelled(true);
+				}
+			}
+		}
+	}
+	
+	@EventHandler
+	private void canPlace(BlockPlaceEvent e) {
+		Player player = e.getPlayer();
+		for (Team team : MinigamesApi.Teams) {
+			if(team.containsPlayer(player)) {
+				if(!team.getCanPlace()) {
+					e.setCancelled(true);
 				}
 			}
 		}

@@ -16,11 +16,12 @@ public class Team {
 	private ArrayList<UUID> players = new ArrayList<UUID>();
 	private ChatColor color = ChatColor.WHITE;
 	private Boolean friendlyfire = false;
-	private Boolean allowInteract = true; 
-	@SuppressWarnings("unused")
+	private Boolean canBreak = true;
+	private Boolean canPlace = true;
+	private Boolean canInteract = true;
 	private String teamname = "";
-	
-	
+
+
 	public Team(String teamname) {
 		this.teamname = teamname;
 		MinigamesApi.Teams.add(this);
@@ -85,14 +86,37 @@ public class Team {
 		return friendlyfire;
 	}
 	
-	public void setAllowInteract(boolean allowInteract) {
-		this.allowInteract = allowInteract;
+	public void setCanInteract(boolean canInteract) {
+		this.canInteract = canInteract;
 	}
 	
-	public boolean getAllowInteract() {
-		return allowInteract;
+	public boolean getCanInteract() {
+		return canInteract;
 	}
 	
+	public void setCanBreak(boolean canBreak) {
+		this.canBreak = canBreak;
+	}
+	
+	public Boolean getCanBreak() {
+		return canBreak;
+	}
+	
+	public void setCanPlace(boolean canPlace) {
+		this.canPlace = canPlace;
+	}
+	
+	public Boolean getCanPlace() {
+		return canPlace;
+	}
+	
+	public String getTeamname() {
+		return teamname;
+	}
+
+	public void setTeamname(String teamname) {
+		this.teamname = teamname;
+	}
 	
 
 }
