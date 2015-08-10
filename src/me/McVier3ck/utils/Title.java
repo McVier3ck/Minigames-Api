@@ -1,4 +1,4 @@
-package me.McVier3ck.title;
+package me.McVier3ck.utils;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;

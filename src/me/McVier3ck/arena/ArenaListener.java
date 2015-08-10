@@ -5,8 +5,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.player.PlayerBedEnterEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import me.McVier3ck.log.Log;
 import me.McVier3ck.main.MinigamesApi;
 
 public class ArenaListener implements Listener{
@@ -50,5 +52,11 @@ public class ArenaListener implements Listener{
 		}
 	}
 	
-	
+	@EventHandler
+	private void worldedit(PlayerBedEnterEvent e) {
+		Arena test = new Arena(e.getPlayer(), "Test");
+
+		Log.Error(String.valueOf(test.isPlayerIn(e.getPlayer())));
+		
+	}
 }

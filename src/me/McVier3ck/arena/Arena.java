@@ -1,12 +1,17 @@
 package me.McVier3ck.arena;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import com.sk89q.worldedit.bukkit.WorldEditPlugin;
+import com.sk89q.worldedit.bukkit.selections.Selection;
+
 import me.McVier3ck.config.Config;
+import me.McVier3ck.log.Log;
 import me.McVier3ck.main.MinigamesApi;
 
 public class Arena {
@@ -19,6 +24,34 @@ public class Arena {
 	private Boolean canBreak = true;
 	private Boolean canPlace = true;
 	private Boolean canInteract = true;
+	
+	
+	public Arena(Player player, String name) {
+		
+		WorldEditPlugin worldEdit = (WorldEditPlugin) Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
+
+		if(worldEdit == null){
+           Log.Error("WorldEdit Not Load");
+        }
+		
+		Selection sel = worldEdit.getSelection(player);
+		
+		this.X1 = sel.getMaximumPoint().getBlockX();
+		this.Y1	= sel.getMaximumPoint().getBlockY();
+		this.Z1 = sel.getMaximumPoint().getBlockZ();
+		
+		this.X2 = sel.getMinimumPoint().getBlockX();
+		this.Y2 = sel.getMinimumPoint().getBlockY();
+		this.Z2 = sel.getMinimumPoint().getBlockZ();
+		
+		this.world = sel.getWorld();
+		
+		this.name = name;
+		
+		MinigamesApi.Arenas.add(this);
+		
+		
+	}
 	
 	public Arena(int X1, int Y1, int Z1, int X2, int Y2, int Z2, World world, String name) {
 		this.X1 = Math.max(X1, X2);

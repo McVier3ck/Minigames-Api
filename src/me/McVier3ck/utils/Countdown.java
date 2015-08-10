@@ -4,22 +4,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.McVier3ck.main.MinigamesApi;
-import me.McVier3ck.title.Title;
 import net.md_5.bungee.api.ChatColor;
 
 public class Countdown {
 
 	private int[] Countdowntimes = null;
-	private int Start = 0;
+	private int Startvalue = 0;
 	private Boolean useXp = false;
 	private Boolean useTitle = false;
 	private int Scheduler;
 	private ChatColor titleColor = ChatColor.WHITE;
 
 
-	public Countdown(int[] Countdowntimes, int Start) {
-		this.setCountdowntimes(Countdowntimes);
-		this.setStart(Start);
+	public Countdown(int[] Countdowntimes, int Startvalue) {
+		this.Countdowntimes = Countdowntimes;
+		this.Startvalue = Startvalue;
 	}
 
 	
@@ -27,7 +26,7 @@ public class Countdown {
 		
 		
 		Scheduler = Bukkit.getScheduler().scheduleSyncRepeatingTask(MinigamesApi.getInstance(), new Runnable() {
-			int curentCount = Start;
+			int curentCount = Startvalue;
 			@Override
 			public void run() {
 				String finalmessage = message.replaceAll("%time%", String.valueOf(curentCount));
@@ -72,12 +71,12 @@ public class Countdown {
 		Countdowntimes = countdowntimes;
 	}
 
-	public int getStart() {
-		return Start;
+	public int getStartValue() {
+		return Startvalue;
 	}
 
-	public void setStart(int start) {
-		Start = start;
+	public void setStartValue(int Startvalue) {
+		this.Startvalue = Startvalue;
 	}
 	
 	public Boolean getUseXp() {

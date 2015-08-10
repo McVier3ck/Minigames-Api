@@ -1,6 +1,6 @@
-name: Minigames-Api
-version: 2.0
+name: MinigamesApi
+version: 2.1
 main: me.McVier3ck.main.MinigamesApi
-
-
+author: McVier3ck
+website: https://github.com/McVier3ck
 
