@@ -35,6 +35,7 @@ public class MinigamesApi extends JavaPlugin {
 		PluginManager pm = this.getServer().getPluginManager();
 		pm.registerEvents(new TeamListener(), this);
 		pm.registerEvents(new ArenaListener(), this);
+
 	}
 
 }
